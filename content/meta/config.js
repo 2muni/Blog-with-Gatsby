@@ -4,7 +4,7 @@ module.exports = {
   siteTitle: "2muni's Blog - Life & Development", // <title>
   shortSiteTitle: "2muni's Blog", // <title> ending for posts and pages
   siteDescription: "PersonalBlog for Life & Development.",
-  siteUrl: "blog.2muni.com",
+  siteUrl: "http://blog.2muni.com",
   pathPrefix: "",
   siteImage: "preview.jpg",
   siteLanguage: "ko",
