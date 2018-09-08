@@ -15,7 +15,7 @@ LifeCycle API는 브라우저 상에서 컴포넌트가 생성 및 삭제, 업�
 
 ##1. 컴포넌트 초기 생성
 
-```
+```javascript
 constructor(props) {
  super(props)
 }  
@@ -24,7 +24,7 @@ constructor(props) {
 컴포넌트가 새로 만들어질 때마다 이 함수가 호출됩니다.
 <br><br>
 
-```
+```javascript
 UNSAFE_componentWillMount(){
 }
 ```
@@ -33,18 +33,17 @@ UNSAFE_componentWillMount(){
 v17 전까지는 deprecated된 메소드들을 unsafe를 생략하고 사용할 수 있습니다.
 <br><br>
 
-```
+```javascript
 componentDidMount(){
 }
 ```
 컴포넌트 렌더링 시에 호출 됩니다.  
 주로 외부 라이브러리 연동시, 컴포넌트에 필요한 데이터 ajax 요청시, DOM 관련 작업에 사용합니다.
-
 예시를 들자면 DOM을 직접 사용하는 차트 라이브러리를 사용할 때, 컴포넌트에 필요한 데이터 GET,POST 등의 요청을 해서 받아올 때, 크로스 브라우징을 위해서 DOM 정보를 읽어올 때, 브라우저 스크롤 위치 등을 읽어올 때 사용할 수 있습니다.
 
 ##2. 컴포넌트 업데이트
 
-```
+```javascript
 UNSAFE_componentWillReveiveProps(nextProps){
  if(this.props.myValue !== nextProps.myValue){
  // 원하는 function blah blah!
@@ -58,7 +57,7 @@ this.props는 아직 변하지 않았고, nextProp가 새로 받게 될 props �
 매우 자주 쓰이는 API이지만 deprecated 됐으며, getDerivedStateFromProps로 대체 되었습니다.
 <br><br>
 
-```
+```javascript
 static getDerivedStateFromProps(nextProps,prevProps){
 } 
 ```
@@ -66,7 +65,7 @@ componentWillReceiveProps와의 차이점은, 정적 메소드로 사용하는 �
 정적 메소드는 클래스 내에만 존재하고 인스턴스에는 존재하지 않는 함수인데, 특정 props가 바뀔 때 설정하려는 state를 객체형태로 리턴하는 방식로 사용하면 됩니다.
 <br><br>
 
-```
+```javascript
 shouldComponentUpdate(nextProps,nextState){
  // true를 리턴하면 getSnapshotBeforeUpdate 메소드가 실행. 
  // props나 state를 업데이트하는 조건에 대한 로직을 작성하고 이를 true/false로 리턴. 
@@ -80,7 +79,7 @@ next가 들어간 파라미터를 받는 메소드들은 전부 값 변화 직�
 예를 들자면, 이 메소드에 return this.props.value !== nextProps.value 라는 한 줄이 들어가 있을 때 nextProps.value의 값이 달라져서 true를 리턴하게 되면 props를 업데이트 하고 리턴 값은 다시 false가 되므로 업데이트가 되지 않습니다.
 <br><br>
 
-```
+```javascript
 UNSAFE_componentWillUpdate(nextProps, nextState) {
 }
 ```
@@ -90,7 +89,7 @@ shouldComponentUpdate가 true를 리턴할 때 호출됩니다.
 이번 16.3 패치로 deprecated 되었고 getSnapshotBeforeUpdate()로 대체할 수 있습니다.
 <br><br>
 
-```
+```javascript
 getSnapshotBeforeUpdate(prevProps, prevState){
 }
 ```
@@ -98,7 +97,7 @@ render() 직후에 호출됩니다.
 이 메소드도 prev 파라미터를 받습니다. 즉 DOM 변화 직전의 실제 DOM 정보를 가져오게 되며, 이 메소드의 리턴값은 componentDidUpdate에서 3번째 parameter로 받아오게 됩니다.
 <br><br>
 
-```
+```javascript
 componentDidUpdate(prevProps, prevState, snapshot){
 }
 ```
@@ -107,7 +106,7 @@ snapshot 파라미터를 이용해서 이전 prevProps와 prevState 값을 받�
 
 ##3. 컴포넌트 제거
 
-```
+```javascript
 componentWillUnmount(){
 }
 ```
@@ -116,7 +115,7 @@ componentWillUnmount(){
 
 ##4. 에러 발생 시 호출되는 API
 
-```
+```javascript
 componentDidCatch(error, info){
 }
 ```

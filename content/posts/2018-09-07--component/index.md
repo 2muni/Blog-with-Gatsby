@@ -39,7 +39,6 @@ React.Component, React.PureComponent를 확장(extends)하여 사용하는 컴�
 먼저, 생성된 프로젝트의 src/App.js를 살펴보겠습니다.
 
 ![Component](component.png)
-<center><i>React.Component</i></center><br/>
 
 React.Component를 확장하여 생성된 것을 확인하실 수 있습니다.  
 
@@ -83,7 +82,6 @@ ReactDOM.render(
 App 컴포넌트의 props에 name 값을 추가했습니다. 수정 후 페이지를 로드하면 다음과 같은 화면이 출력됩니다.
 
 ![Props](props.png)
-<center><i>Hello props</i></center><br/>
 
 데이터가 정상적으로 입력된 것을 확인할 수 있습니다.
 
@@ -135,7 +133,6 @@ export default App;
 수정 후 버튼 이벤트가 수행되는지 확인해 보세요.
 
 ![State](state.png)
-<center><i>Hello state</i></center><br/>
 
 버튼이 잘 동작하나요? 이로써 우리는 클래스 기반의 컴포넌트에서 props와 state를 통해 정상적으로 데이터를 출력하였습니다!  
 다음으로 함수 기반 컴포넌트에 관해 알아보겠습니다.
