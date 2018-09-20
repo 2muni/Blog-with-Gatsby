@@ -159,7 +159,7 @@ import React, {Component} from 'react'
 class InputForm extends Component {
   state = {
     name: '',
-    phone: ``
+    phone: ''
   }
   handleChange = (e) => {
     this.setState({
@@ -168,10 +168,10 @@ class InputForm extends Component {
   }
   handleSubmit = (e) => {
     this.props.onCreate(this.state);
-    this.setState = {
-      name: ``,
-      phone: ``
-    }
+    this.setState ({
+      name: '',
+      phone: ''
+    })
   }
   render() {
     return (
