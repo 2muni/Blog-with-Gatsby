@@ -5,6 +5,8 @@ category: "React.js"
 cover: head.png
 ---
 
+>본 섹션은 [Velopert님의 누구든지 하는 리액트](https://velopert.com/3613)를 바탕으로 작성되었습니다.
+
 이번 시간에는 리액트에서 배열을 다루는 방법에 대해 알아보겠습니다.  
 리액트에서 `state` 내부의 값을 직접적으로 수정해서는 안됩니다. 이를 불변성 유지라 하는데요, 우리는 `state`에 배열을 선언하기 때문에 배열을 직접 수정하는 `push`, `splice`, `unshift`, `pop`과 같은 함수는  사용해서는 안됩니다. 그 대신, 새로운 배열을 만드는 `concat`, `slice`, `map`, `filter`과 같은 함수를 사용해야 합니다.
 
