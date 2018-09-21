@@ -8,7 +8,8 @@ cover: head.png
 이번 시간에는 리액트에서 배열을 다루는 방법에 대해 알아보겠습니다.  
 리액트에서 `state` 내부의 값을 직접적으로 수정해서는 안됩니다. 이를 불변성 유지라 하는데요, 우리는 `state`에 배열을 선언하기 때문에 배열을 직접 수정하는 `push`, `splice`, `unshift`, `pop`과 같은 함수는  사용해서는 안됩니다. 그 대신, 새로운 배열을 만드는 `concat`, `slice`, `map`, `filter`과 같은 함수를 사용해야 합니다.
 
-리액트에서 불변성이 중요한 이유는 필요한 상황에 리렌더링 되도록 설계하고, 성능을 최적화하기 위함입니다. 이에 관한 설명은 우선 프로젝트 구현이 끝나고 알려드리겠습니다.
+리액트에서 불변성이 중요한 이유는 필요한 상황에 리렌더링 되도록 설계하고, 성능을 최적화하기 위함입니다.  
+이에 관한 설명은 우선 프로젝트 구현이 끝나고 알려드리겠습니다.
 
 ##데이터 추가
 
@@ -22,7 +23,7 @@ cover: head.png
   phone: '010-0000-0000'
 }
 ```
-여기서 `id` 값은 각 데이터를 식별하기 위함이며, 이 값은 데이터가 추가 될 때마다 1씩 더해집니다.
+`id` 값은 각 데이터를 식별하기 위함이며, 이 값은 데이터가 추가 될 때마다 1씩 더해집니다.
 
 `App.js`코드를 다음과 같이 작성해주세요.
 ```javascript
@@ -123,9 +124,6 @@ import React, { Component } from 'react';
 import InfoItem from './InfoItem';
 
 class InfoList extends Component {
-  static defaultProps = {
-    data: []
-  }
 
   render() {
     const { data } = this.props;
@@ -139,6 +137,10 @@ class InfoList extends Component {
       </div>
     );
   }
+}
+
+InfoList.defaultProps = {
+  data: []
 }
 
 export default InfoList;
@@ -190,4 +192,355 @@ export default App;
 ```
 잘 작동하시나요?
 
-다음 게시글에선 우리가 만든 데이터를 제거하거나 수정하는 방법에 대해 알아보겠습니다.
+## 데이터 제거
+기존 베열 데이터를 유지하고 새로운 배열을 만들어 데이터를 제거하기 위해선, 다양한 방법이 있습니다. 여기서는 배열의 내장함수인 `filter`를 이용하여 새로운 배열을 생성할 겁니다. 자세한 내용은 [Array.prototype.filter()](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/filter)를 참고하세요.
+
+`App.js`에 `handleRemove`함수를 생성하고, 해당 함수를 `InfoList`에 `onRemove`로 넘겨주세요.
+```javascript
+// path: src/App.js
+import React, { Component } from 'react';
+import InputForm from './components/InputForm';
+import InfoList from './components/InfoList';
+
+class App extends Component {
+  id = 2
+  state = {
+    info: [
+      {
+        id: 0,
+        name: '이문희',
+        phone: '010-0000-0000'
+      },
+      {
+        id: 1,
+        name: '홍길동',
+        phone: '010-1111-1111'
+      }
+    ]
+  }
+  handleCreate = (data) => {
+    const { info } = this.state;
+    this.setState({
+      info: info.concat({ id: this.id++, ...data })
+    })
+  }
+  handleRemove = (id) => {
+    const { info } = this.state;
+    this.setState({
+      info: info.filter(info => info.id !== id)
+    })
+  }
+  render() {
+    return (
+      <div>
+        <InputForm
+          onCreate={this.handleCreate}
+        />
+        <InfoList
+          data={this.state.info}
+          onRemove={this.handleRemove}  
+        />
+      </div>
+    );
+  }
+}
+
+export default App;
+```
+
+`InfoList`에선 `props`로 전달받은 `onRemove`를 그대로 `InfoItem`으로 전달하겠습니다. `defaultProps`또한 설정하는 것을 잊지마세요.
+```javascript
+// path: src/components/InfoList.js
+import React, { Component } from 'react';
+import InfoItem from './InfoItem';
+
+class InfoList extends Component {
+
+  render() {
+    const { data, onRemove } = this.props;
+    const list = data.map(
+      info => (
+      <InfoItem
+        key={info.id}
+        info={info} 
+        onRemove={onRemove}  
+      />)
+    );
+
+    return (
+      <div>
+        {list}
+      </div>
+    );
+  }
+}
+
+InfoList.defaultProps = {
+  data: [],
+  onRemove: () => console.warn('onRemove not defined')
+}
+
+export default InfoList;
+```
+그 다음, `InfoItem`에서 삭제 기능을 구현하겠습니다. 삭제 버튼을 만들어서, 해당 버튼에 이벤트를 설정하겠습니다.
+```javascript
+// path: src/components/InfoItem.js
+import React, { Component } from 'react';
+
+class InfoItem extends Component {
+  handleRemove = () => {
+    const { info, onRemove } = this.props;
+    onRemove(info.id);
+  }  
+  render() {
+    const style = {
+      border: '1px solid black',
+      padding: '8px',
+      margin: '8px'
+    };
+
+    const { name, phone } = this.props.info;
+
+    return (
+      <div style={style}>
+        <div><b>{name}</b></div>
+        <div>{phone}</div>
+        <button onClick={this.handleRemove}>삭제</button>
+      </div>
+    );
+  }
+}
+
+InfoItem.defaultProps = {
+  info: {
+    name: '이름',
+    phone: '010-0000-0000',
+    id: 0
+  }
+}
+
+export default InfoItem;
+```
+삭제 버튼을 눌러보세요. 데이터 삭제가 잘 되시나요?
+
+##데이터 수정
+수정의 경우에도 불변성을 지켜주는 것은 당연합니다. 기존의 배열 객체를 직접적으로 수정해선 안됩니다.
+
+`App.js`에 `handleUpdate`라는 함수를 만들고, `InfoList`에 할당해주세요.
+```javascript
+// path: src/App.js
+import React, { Component } from 'react';
+import InputForm from './components/InputForm';
+import InfoList from './components/InfoList';
+
+class App extends Component {
+  id = 2
+  state = {
+    info: [
+      {
+        id: 0,
+        name: '이문희',
+        phone: '010-0000-0000'
+      },
+      {
+        id: 1,
+        name: '홍길동',
+        phone: '010-1111-1111'
+      }
+    ]
+  }
+  handleCreate = (data) => {
+    const { info } = this.state;
+    this.setState({
+      info: info.concat({ id: this.id++, ...data })
+    })
+  }
+  handleRemove = (id) => {
+    const { info } = this.state;
+    this.setState({
+      info: info.filter(info => info.id !== id)
+    })
+  }
+  handleUpdate = (id, data) => {
+    const {info} = this.state;
+    this.setState({
+      info: info.map(
+        info => id === info.id
+        ? { ...info, ...data }
+        : info
+      )
+    })
+  }
+  render() {
+    return (
+      <div>
+        <InputForm
+          onCreate={this.handleCreate}
+        />
+        <InfoList
+          data={this.state.info}
+          onRemove={this.handleRemove}  
+        />
+      </div>
+    );
+  }
+}
+
+export default App;
+```
+다음은 `InfoList`입니다.
+```javascript
+// path: src/components/InfoList.js
+import React, { Component } from 'react';
+import InfoItem from './InfoItem';
+
+class InfoList extends Component {
+
+  render() {
+    const { data, onRemove, onUpdate } = this.props;
+    const list = data.map(
+      info => (
+      <InfoItem
+        key={info.id}
+        info={info} 
+        onRemove={onRemove}
+        onUpdate={onUpdate}
+      />)
+    );
+
+    return (
+      <div>
+        {list}
+      </div>
+    );
+  }
+}
+
+InfoList.defaultProps = {
+  data: [],
+  onRemove: () => console.warn('onRemove not defined'),
+  onUpdate: () => console.warn('onUpdate not defined')
+}
+
+export default InfoList;
+```
+마찬가지로 `props`로 전달받은 `onUpdate`를 그대로 전달해주었습니다.
+
+다음은 `InfoItem`인데요, 수정할 코드가 많으니 주석을 읽어 나가면서 코드를 작성해주세요
+```javascript
+// path: src/components/InfoItem.js
+import React, { Component } from 'react';
+
+class InfoItem extends Component {
+  state = {
+    // 수정 버튼을 눌렀을 시, editing 상태를 true로 전환합니다.
+    // editing 값이 true일 경우, 텍스트 형태로 보여주던 데이터를
+    // input 형태로 부여주게 됩니다.
+    editing: false,
+    // input 값의 상태입니다.
+    name: '',
+    phone: ''
+  }
+
+  handleRemove = () => {
+    const { info, onRemove } = this.props;
+    onRemove(info.id);
+  }
+
+  // editing 값을 전환하는 함수입니다.
+  handleToggleEdit = () => {
+    const { editing } = this.state;
+    this.setState({ editing: !editing });
+  }
+
+  // input의 onChange 이벤트 핸들러입니다.
+  handleChange = (e) => {
+    const { name, value } = e.target;
+    this.setState({
+      [name]: value
+    })
+  }
+
+  componentDidUpdate(prevProps, prevState) {
+    // editing 값이 변화될 때 마다 처리되는 로직입니다.
+    // 수정을 눌렀을 땐 기존 값이 input에 나타나고,
+    // 수적을 적용할 땐 input의 값들이 부모에게 전달됩니다.
+
+    const { info, onUpdate } = this.props;
+    if(!prevState.editing && this.state.editing) {
+      // editing: false -> true
+      this.setState({
+        name: info.name,
+        phone: info.phone
+      })
+    } else if(prevState.editing && !this.state.editing) {
+      // editing: true -> false
+      onUpdate(info.id, {
+        name: this.state.name,
+        phone: this.state.phone
+      })
+    }
+  }
+
+  render() {
+    const style = {
+      border: '1px solid black',
+      padding: '8px',
+      margin: '8px'
+    };
+
+    const { name, phone } = this.props.info;
+    const { editing } = this.state;
+
+    // 수정 모드
+    if(editing) {
+      return (
+        <div style={style}>
+          <div>
+            <input
+              value={this.state.name}
+              name="name"
+              placeholder="이름"
+              onChange={this.handleChange}
+            />
+          </div>
+          <div>
+            <input
+              value={this.state.phone}
+              name="phone"
+              placeholder="전화번호"
+              onChange={this.handleChange}
+            />
+          </div>
+          <button onClick={this.handleToggleEdit}>적용</button>
+          <button onClick={this.handleRemove}>삭제</button>
+        </div>
+      );
+    }
+
+    return (
+      <div style={style}>
+        <div><b>{name}</b></div>
+        <div>{phone}</div>
+        <button onClick={this.handleToggleEdit}>수정</button>
+        <button onClick={this.handleRemove}>삭제</button>
+      </div>
+    );
+  }
+}
+
+InfoItem.defaultProps = {
+  info: {
+    name: '이름',
+    phone: '010-0000-0000',
+    id: 0
+  }
+}
+
+export default InfoItem;
+```
+수정이 잘 되시나요?
+
+이로써 우리는 리액트 state의 배열 내부 데이터를 생성 및 수정, 삭제하고 해당 데이터를 렌더링하는 방법을 배워보았습니다.
+
+다음은 데이터 검색 기능을 구현할 예정입니다. 기능을 구현하면서, 리액트가 왜 불변성을 유지하면서 데이터를 관리해야 하는지 알아보겠습니다.
