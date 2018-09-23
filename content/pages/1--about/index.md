@@ -6,15 +6,9 @@ title: About
 프론트엔드 및 백엔드를 공부하고 있습니다.<br/>
 개발한 서비스가 이 세상을 조금이나마 행복하게 만들기를 바랍니다.
 
-<!--
-## Technical Skills Summary
-* **Frontend**: React, jQuery
-* **Backend**: Node.js, Express, php, MongoDB, SQL
-* **etc**: java
--->
 ## Personal Blog
 
-해당 사이트는 [PersonalBlog](https://github.com/greglobinski/gatsby-starter-personal-blog) 을 기반으로 작성되었습니다.<br/>
+본 블로그는 [PersonalBlog](https://github.com/greglobinski/gatsby-starter-personal-blog) 을 기반으로 작성되었습니다.<br/>
 사용된 기술은 다음과 같습니다.
 
 ### Standard features:
