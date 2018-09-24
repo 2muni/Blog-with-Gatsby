@@ -6,7 +6,7 @@ cover: head.png
 ---
 
 ##Create React App
-리액트 프로젝트를 시작하면서, 사용자는 컴포넌트를 여러가지 파일로 분리할 것이며(모듈화), 또한 이러한 컴포넌트들은 일반 자바스크립트가 아닌 JSX 문법으로 작성하게 됩니다. 이러한 파일들은 하나로 결합하기 위해선 자바스크립트 모듈화 도구인 [webpack](https://webpack.js.org/)을 사용하고, JSX를 비롯한 새로운 자바스크립트 문법들을 사용하기 위해선 [Babel](https://babeljs.io/)이라는 도구를 사용합니다.
+리액트 프로젝트를 시작하면서, 사용자는 컴포넌트를 여러가지 파일로 분리할 것이며(**모듈화**), 또한 이러한 컴포넌트들은 일반 자바스크립트가 아닌 JSX 문법으로 작성하게 됩니다. 이러한 파일들은 하나로 결합하기 위해선 자바스크립트 모듈화 도구인 [webpack](https://webpack.js.org/)을 사용하고, JSX를 비롯한 새로운 자바스크립트 문법들을 사용하기 위해선 [Babel](https://babeljs.io/)이라는 도구를 사용합니다.
 
 [CRA-Create React App](https://github.com/facebook/create-react-app)은 리액트 작업환경을 명령어 하나로 설정할 수 있는 공식 도구입니다. 이로 인해 사용자는 컴포넌트 개발을 제외한 다른 것은 신경쓰지 않아도 됩니다.  
 (또한 [PWA-Progressive Web App](https://developers.google.com/web/progressive-web-apps/?hl=ko)이 일부 적용되어 있습니다.)
@@ -35,7 +35,7 @@ yarn global add create-react-app
 $ create-react-app react-tutorial
 ```
 
-설치가 완료되었으면 npm run start 명령어(혹은 yarn start)를 통해 개발 서버를 실행하여 개발을 시작하실 수 있습니다.
+설치가 완료되었으면 `npm run start` 명령어(혹은 `yarn start`)를 통해 개발 서버를 실행하여 개발을 시작하실 수 있습니다.
 
 ###명령어
 아래 명령어들은 프로젝트의 최상단 디렉토리 내부에 있는 package.json을 통해 확인하실 수 있습니다.
