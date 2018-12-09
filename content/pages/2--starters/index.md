@@ -2,19 +2,12 @@
 title: Other Project
 menuTitle: My Projects
 ---
-<!--
-[Personal**Blog**](https://github.com/greglobinski/gatsby-starter-personal-blog) is not my first [GatsbyJS](https://www.gatsbyjs.org/) starter.
 
-![SimpleLanding](./gatsby-starter-simple-landing.png)
+아래 프로젝트들은 주기적으로 업데이트 되고 있습니다.
+
+![SimpleLanding](./temit.png)
 
 ### SimpleLanding
 
-As the name says, it is a landing page starter.
-[Demo](https://gatsby-starter-simple-landing.greglobinski.com/) | [Github repo](https://github.com/greglobinski/gatsby-starter-simple-landing)
-
-![StyledBlog](./gatsby-styled-blog-starter.jpg)
-
-### StyledBlog
-
-That was my first Gatsby starter. It is a forefather of the starter you are looking at now.
-[Github repo](https://github.com/greglobinski/gatsby-styled-blog-starter)
+Laravel과 React로 설계한 SNS 플랫폼입니다.
+[Site](http://temit.2muni.com/) | [Github repo](https://github.com/2muni/temit)
