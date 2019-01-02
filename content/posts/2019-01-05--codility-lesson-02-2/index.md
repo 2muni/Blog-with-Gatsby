@@ -1,5 +1,5 @@
 ---
-title: Lesson 2-2. Odd OccurrencesInArray
+title: Lesson 2-2. Odd Occurrences In Array
 subTitle: Codility Lessons ~ Arrays
 category: "Algorithm"
 cover: head.png
