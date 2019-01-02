@@ -40,7 +40,7 @@ each element of array A is an integer within the range [1..1,000,000,000];
 all but one of the values in A occur an even number of times.
 
 # 해결방안
-* XOR 연산을 통해 중복값을 배제한다
+* XOR 연산을 통해 중복값을 배제한다.
 
 # 소스코드(Java)
 ```java
