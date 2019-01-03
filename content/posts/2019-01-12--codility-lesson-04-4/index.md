@@ -48,9 +48,8 @@ Write an efficient algorithm for the following assumptions:
 * each element of array A is an integer within the range [−1,000..1,000].
 
 # 해결방안
-* 배열 내부의 총합을 구한다.
-* 좌측 포지션의 합을 올려가며 총합계의 차를 구한다.
-* Math.abs()를 통해 최소 절대값을 리턴한다.
+* 최대카운터 연산을 위한 반복문을 별도로 설계한다.
+* 중간값의 경우, 사전에 행산 최대카운터 연산 여부에 따라 값을 할당한다.
 
 # 소스코드(Java)
 ```java
