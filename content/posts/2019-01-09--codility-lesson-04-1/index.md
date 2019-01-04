@@ -51,7 +51,7 @@ Write an efficient algorithm for the following assumptions:
 
 # 해결방안
 * 이동거리 + 1 만큼의 크기를 갖는 논리 배열을 생성한다.
-* 반복문을 통해 입력 배열 값을 인덱스로 갖는 논리 배열에 true 값을 할당하고 i 값을 리턴한다.
+* 반복문을 통해 입력 배열 원소값을 인덱스로 갖는 논리 배열에 true 값을 할당하고 i 값을 리턴한다.
 
 # 소스코드(Java)
 ```java
