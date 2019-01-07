@@ -6,41 +6,52 @@ cover: head.png
 ---
 
 # 문제
-A non-empty array A consisting of N integers is given. Array A represents numbers on a tape.
+You are given N counters, initially set to 0, and you have two possible operations on them:
 
-Any integer P, such that 0 < P < N, splits this tape into two non-empty parts: A[0], A[1], ..., A[P − 1] and A[P], A[P + 1], ..., A[N − 1].
+increase(X) − counter X is increased by 1,
+max counter − all counters are set to the maximum value of any counter.
+A non-empty array A of M integers is given. This array represents consecutive operations:
 
-The difference between the two parts is the value of: |(A[0] + A[1] + ... + A[P − 1]) − (A[P] + A[P + 1] + ... + A[N − 1])|
-
-In other words, it is the absolute difference between the sum of the first part and the sum of the second part.
-
-For example, consider array A such that:
+if A[K] = X, such that 1 ≤ X ≤ N, then operation K is increase(X),
+if A[K] = N + 1 then operation K is max counter.
+For example, given integer N = 5 and array A such that:
 
     A[0] = 3
-    A[1] = 1
-    A[2] = 2
-    A[3] = 4
-    A[4] = 3
-We can split this tape in four places:
+    A[1] = 4
+    A[2] = 4
+    A[3] = 6
+    A[4] = 1
+    A[5] = 4
+    A[6] = 4
+the values of the counters after each consecutive operation will be:
 
-* P = 1, difference = |3 − 10| = 7 
-* P = 2, difference = |4 − 9| = 5 
-* P = 3, difference = |6 − 7| = 1 
-* P = 4, difference = |10 − 3| = 7 
+    (0, 0, 1, 0, 0)
+    (0, 0, 1, 1, 0)
+    (0, 0, 1, 2, 0)
+    (2, 2, 2, 2, 2)
+    (3, 2, 2, 2, 2)
+    (3, 2, 2, 3, 2)
+    (3, 2, 2, 4, 2)
+The goal is to calculate the value of every counter after all operations.
+
 Write a function:
 
-class Solution { public int solution(int[] A); }
+class Solution { public int[] solution(int N, int[] A); }
 
-that, given a non-empty array A of N integers, returns the minimal difference that can be achieved.
+that, given an integer N and a non-empty array A consisting of M integers, returns a sequence of integers representing the values of the counters.
+
+Result array should be returned as an array of integers.
 
 For example, given:
 
     A[0] = 3
-    A[1] = 1
-    A[2] = 2
-    A[3] = 4
-    A[4] = 3
-the function should return 1, as explained above.
+    A[1] = 4
+    A[2] = 4
+    A[3] = 6
+    A[4] = 1
+    A[5] = 4
+    A[6] = 4
+the function should return [3, 2, 2, 4, 2], as explained above.
 
 Write an efficient algorithm for the following assumptions:
 

@@ -1,5 +1,5 @@
 ---
-title: Lesson 5-2. Genomic Range Query (75%)
+title: Lesson 5-2. Genomic Range Query
 subTitle: Codility Lessons ~ Prefix sums
 category: "Algorithm"
 cover: head.png
