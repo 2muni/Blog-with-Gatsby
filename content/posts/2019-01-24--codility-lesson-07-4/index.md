@@ -1,5 +1,5 @@
 ---
-title: Lesson 7-3. Nesting
+title: Lesson 7-4. Stone Wall
 subTitle: Codility Lessons ~ Stacks and Queues
 category: "Algorithm"
 cover: head.png
