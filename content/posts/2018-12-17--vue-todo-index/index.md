@@ -13,19 +13,18 @@ cover: head.png
 
 #목차
 
-###1. Basics
+###1. CRUD & Component Communication
 기본적인 Vue.js의 사용을 바탕으로 할 일 목록을 작성합니다.
 
-###2. Component Communication
-Vue.js 에서의 컴포넌트간 통신에 대하여 알아봅니다.
+###2. Filter & Animation
+필터링과 Vue.js에서 제공하는 Transition을 통해 애니메이션을 추가합니다.
 
-###3. Event Bus
-###4. Vuex
-###5. Laravel API
-###6. Firebase & Firestore
-###7. Realtime Database w/ Firebase & Firestore
-###8. Vue Router
-###9. Laravel Passport
-###10. Authentication
-###11. User Todos Laravel API
-###12. Polish (Validation, Animation, Spinners)
+###3. Vuex
+###4. Laravel API
+###5. Firebase & Firestore
+###6. Realtime Database w/ Firebase & Firestore
+###7. Vue Router
+###8. Laravel Passport
+###9. Authentication
+###10. User Todos Laravel API
+###11. Polish (Validation, Animation, Spinners)
