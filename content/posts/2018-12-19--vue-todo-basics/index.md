@@ -7,7 +7,7 @@ cover: head.png
 
 >본 게시글은 [Vue.js로 할 일 목록 만들기](https://blog.2muni.com/vue-todo-index/) 중 Part 1에 해당하는 게시글입니다.
 
-지금부터 우리는 Vue.js를 이용하여 할 일 목록을 만들어 볼겁니다. 프로젝트 전체 소스코드는 [Git](https://github.com/2muni/laravel-vue.js-todo-list/tree/067486cfd7e65d1b06a68bad724ded29d5e4bbdf)에서 확인하실 수 있습니다.
+지금부터 우리는 Vue.js를 이용하여 할 일 목록을 만들어 볼겁니다. 프로젝트 전체 소스코드는 [Git](https://github.com/2muni/todo-vue/tree/88913d447adcf43f5122edf05351cddaa1a3661a)에서 확인하실 수 있습니다.
 
 #준비사항
 
@@ -20,7 +20,6 @@ cover: head.png
 ```bash
 vue init webpack todo-vue
 ```
-옵션 값은 전부다 n으로 진행하며, 패키지 모듈러는 npm입니다.
 
 설치가 완료되었으면 `npm run dev` 명령을 수행하여 개발 서버를 열어주세요.
 
@@ -83,9 +82,9 @@ npm install sass-loader node-sass --save
 
 #<br>데이터 입력
 
-TodoList 컴포넌트는 자식 컴포넌트를 포함하는 부모 컴포넌트입니다. Vue.js에서는 일반적으로 전역적인 데이터 관리 모듈이 없는 이상, [데이터는 부모 컴포넌트에서 자식 컴포넌트로 전달되도록 설계됩니다.](https://kr.vuejs.org/v2/guide/components.html#%EB%8B%A8%EB%B0%A9%ED%96%A5-%EB%8D%B0%EC%9D%B4%ED%84%B0-%ED%9D%90%EB%A6%84)
+TodoList 컴포넌트는 자식 컴포넌트를 포함하는 부모 컴포넌트입니다. Vue.js에서는 일반적으로 전역적인 데이터 관리 모듈이 없는 이상, 데이터는 부모 컴포넌트에서 자식 컴포넌트로 전달되도록 설계됩니다.
 
-부모 컴포넌트에서 자식 컴포넌트로 보내는 데이터를 `props`라 하며, 자식 컴포넌트에서는 `$emit`을 통한 이벤트 호출로 [부모 컴포넌트에 간섭할 수 있습니다.](https://kr.vuejs.org/v2/guide/components.html#v-on%EC%9D%84-%EC%9D%B4%EC%9A%A9%ED%95%9C-%EC%82%AC%EC%9A%A9%EC%9E%90-%EC%A7%80%EC%A0%95-%EC%9D%B4%EB%B2%A4%ED%8A%B8)
+부모 컴포넌트에서 자식 컴포넌트로 보내는 데이터를 `props`라 하며, 자식 컴포넌트에서는 `$emit`을 통한 이벤트 호출로 부모 컴포넌트에 간섭할 수 있습니다.
 
 ## Todo-List 작성
 
@@ -148,8 +147,6 @@ export default {
 }
 </style>
 ```
-
-기본 템플릿 문법에 관해선 [여기](https://kr.vuejs.org/v2/guide/syntax.html)를 참고하세요
 
 브라우저로 돌아가서 입력창이 추가 되었는지 확인해보세요.
 
@@ -215,7 +212,9 @@ export default {
   components: {
     TodoItem,
   },
+
   ...
+
 ```
 
 입력창에 내용을 작성하고 엔터키를 눌러보세요. 입력한 내용이 정상적으로 추가되나요?
@@ -227,7 +226,7 @@ export default {
 
 데이터의 삭제는 어떤 컴포넌트에서 발생되어야 할까요? 당연하게도, `todo-item` 컴포넌트에서 발생되어야 합니다.
 
-그렇다면 자식 컴포넌트에서 발생된 이벤트가 부모 컴포넌트의 데이터에 간섭해야 됩니다. 이를 위해선 부모 컴포넌트인 `todo-list`가 자식 컴포넌트인 `todo-item`에서 발생되는 이벤트를 청취해야하며, 이는 자식 컴포넌트에서 `$emit`을 통해 호출한 이벤트를 감지함으로써 가능하게 됩니다.
+자식 컴포넌트에서 발생된 이벤트는 부모 컴포넌트의 데이터에 간섭해야 됩니다. 이를 위해선 부모 컴포넌트인 `todo-list`가 자식 컴포넌트인 `todo-item`에서 발생되는 이벤트를 청취해야하며, 이는 자식 컴포넌트에서 `$emit`을 통해 호출한 이벤트를 감지함으로써 가능하게 됩니다.
 
 우선 `TodoList.vue`의 내용을 다음과 같이 수정해 주세요.
 
@@ -301,13 +300,9 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.todo-item {
-  margin-bottom: 12px;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  animation-duration: 0.3s;
-}
+
+...
+
 .remove-item {
   cursor: pointer;
   margin-left: 14px;
@@ -371,19 +366,9 @@ export default {
 ...
 
 <style lang="scss" scoped>
-.todo-item {
-  margin-bottom: 12px;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-}
-.remove-item {
-  cursor: pointer;
-  margin-left: 14px;
-  &:hover {
-    color: black;
-  }
-}
+
+...
+
 .todo-item-left {
   display: flex;
   align-items: center;
@@ -438,9 +423,9 @@ export default {
     }
   },
   methods: {
-    removeTodo(id) {
-      this.$emit('removeTodo', id)
-    },
+
+    ...
+
     editTodo() {
       this.beforeEditCache = this.title
       this.editing = true
@@ -466,15 +451,11 @@ export default {
 </script>
 ```
 
-우선, 데이터 영역에 추가한 `beforeEditCache`를 통해 수정 전의 원본 내용을 저장합니다. 
-
-또한 input 엘리먼트의 포커싱을 위해 [사용자 지정 디렉티브](https://kr.vuejs.org/v2/guide/custom-directive.html)를 선언하였습니다.
+우선, 데이터 영역에 추가한 `beforeEditCache`를 통해 수정 전의 원본 내용을 저장합니다. 또한 사용자 지정 디렉티브를 추가하여 input 엘리먼트의 포커싱을 추가하였습니다.
 
 메소드 영역에서는 `editTodo()`로 입력 상태를 변경하고, `doneEdit()`을 통해 내용을 수정하며, `cancelEdit()`으로 수정을 취소하게 됩니다.
 
-작성을 완료하셨으면 브라우저로 돌아가 해당 사항을 확인해 보세요.
-
-또한 개발 도구로도 해당 변경 사항이 부모 컴포넌트인 `todo-list`에도 똑같이 반영 되는지도 확인해 보세요.
+작성을 완료하셨으면 개발 도구를 사용해 부모 컴포넌트에도 똑같이 반영 되는지도 확인해 보세요.
 
 
 #<br>맺으며
