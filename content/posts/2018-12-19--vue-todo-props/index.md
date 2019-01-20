@@ -1,13 +1,13 @@
 ---
-title: Part 1. Component Communication - props
+title: Part 1-1. Component Communication - props
 subTitle: Vue.js로 할 일 목록 만들기
 category: "Vue.js"
 cover: head.png
 ---
 
->본 게시글은 [Vue.js로 할 일 목록 만들기](https://blog.2muni.com/vue-todo-index/) 중 Part 1에 해당하는 게시글입니다.
+>본 게시글은 [Vue.js로 할 일 목록 만들기](https://blog.2muni.com/vue-todo-index/) 중 Part 1-1에 해당하는 게시글입니다.
 
-지금부터 우리는 Vue.js를 이용하여 할 일 목록을 만들어 볼겁니다. 프로젝트 전체 소스코드는 [Git](https://github.com/2muni/laravel-vue.js-todo-list/tree/067486cfd7e65d1b06a68bad724ded29d5e4bbdf)에서 확인하실 수 있습니다.
+지금부터 우리는 Vue.js를 이용하여 간단한 할 일 목록을 만들어 볼겁니다. 프로젝트 전체 소스코드는 [Git](https://github.com/2muni/laravel-vue.js-todo-list/tree/067486cfd7e65d1b06a68bad724ded29d5e4bbdf)에서 확인하실 수 있습니다.
 
 #준비사항
 

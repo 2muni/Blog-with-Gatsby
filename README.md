@@ -1,7 +1,8 @@
 ## Personal Blog
 
-해당 사이트는 [PersonalBlog](https://github.com/greglobinski/gatsby-starter-personal-blog) 을 기반으로 작성되었습니다.<br/>
-사용된 기술은 다음과 같습니다.
+[blog.2muni.com](blog.2muni.com)
+
+This project was designed based on [PersonalBlog](https://github.com/greglobinski/gatsby-starter-personal-blog)
 
 ### Standard features:
 
